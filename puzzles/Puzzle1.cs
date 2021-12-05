@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace AdventOfCode2021.Puzzles
 {
-    public class Puzzle1
+    public class Puzzle1 : IPuzzle
     {
         private readonly string inputPath;
 
