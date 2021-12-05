@@ -1,4 +1,7 @@
-public interface IPuzzle
+namespace AdventOfCode2021.Puzzles
 {
-    void Solve();
+    public interface IPuzzle
+    {
+        void Solve();
+    }
 }
