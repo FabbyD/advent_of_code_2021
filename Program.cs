@@ -1,5 +1,5 @@
 ﻿using System;
-using AdventOfCode2021.Puzzles;
+using AdventOfCode2021.Days;
 
 namespace AdventOfCode2021
 {
@@ -9,10 +9,17 @@ namespace AdventOfCode2021
         {
             if (args.Length > 1)
             {
-                var puzzleNumber = int.Parse(args[0]);
+                var day = GetDay(int.Parse(args[0]));
                 
-                var puzzle = GetPuzzle(puzzleNumber, args);
-                puzzle.Solve();
+                switch (int.Parse(args[1]))
+                {
+                    case 1:
+                        day.Part1();
+                        break;
+                    case 2:
+                        day.Part2();
+                        break;
+                }
             }
             else
             {
@@ -20,16 +27,14 @@ namespace AdventOfCode2021
             }
         }
 
-        static IPuzzle GetPuzzle(int puzzleNumber, string[] args)
+        static IDay GetDay(int dayNumber)
         {
-            switch (puzzleNumber)
+            switch (dayNumber)
             {
                 case 1:
-                    return new Puzzle1(args[1]);
-                case 2:
-                    return new Puzzle2(args[1]);
+                    return new Day1();
                 default:
-                    throw new ArgumentException("Unknown puzzle number", nameof(puzzleNumber));
+                    throw new ArgumentException("Unknown day number", nameof(dayNumber));
             }
         }
     }
