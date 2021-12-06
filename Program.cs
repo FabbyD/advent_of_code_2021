@@ -33,6 +33,8 @@ namespace AdventOfCode2021
             {
                 case 1:
                     return new Day1();
+                case 2:
+                    return new Day2();
                 default:
                     throw new ArgumentException("Unknown day number", nameof(dayNumber));
             }
