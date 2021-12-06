@@ -112,13 +112,7 @@ namespace AdventOfCode2021.Days
 
             return count;
         }
-
-        private char FindMostCommonBit(string[] lines, int bitPosition)
-        {
-            var bitCount = CountBit(lines, bitPosition);
-            return bitCount >= lines.Length / 2 ? '1' : '0';
-        }
-
+        
         private int ComputeGammaRate(string[] lines)
         {
             int[] bitCounts = CountBits(lines);
