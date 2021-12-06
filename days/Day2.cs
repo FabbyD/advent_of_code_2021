@@ -11,32 +11,39 @@ namespace AdventOfCode2021.Days
         public void Part1()
         {
             var finalState = File.ReadAllLines(inputPath)
-                .Aggregate(new State(), (state, line) => Process(line, state));
+                .Aggregate(new State(), (state, line) => Process(Parse(line), ref state));
 
             Console.WriteLine("Solution: {0}", finalState.depth * finalState.horizontal);
         }
 
         public void Part2()
         {
+            var finalState = File.ReadAllLines(inputPath)
+                .Aggregate(new State(), (state, line) => Process2(Parse(line), ref state));
 
+            Console.WriteLine("Solution: {0}", finalState.depth * finalState.horizontal);
         }
 
-        private State Process(string line, State state)
+        private Command Parse(string line)
         {
             var tokens = line.Split(' ');
             var command = tokens[0];
-            var distance = int.Parse(tokens[1]);
+            var argument = int.Parse(tokens[1]);
+            return new Command{ Name = command, Argument = argument};
+        }
 
-            switch(command)
+        private State Process(Command command, ref State state)
+        {
+            switch(command.Name)
             {
                 case "forward":
-                    state.horizontal += distance;
+                    state.horizontal += command.Argument;
                     break;
                 case "down":
-                    state.depth += distance;
+                    state.depth += command.Argument;
                     break;
                 case "up":
-                    state.depth -= distance;
+                    state.depth -= command.Argument;
                     break;
                 default:
                     break;
@@ -45,10 +52,39 @@ namespace AdventOfCode2021.Days
             return state;
         }
 
+        private State Process2(Command command, ref State state)
+        {
+            switch(command.Name)
+            {
+                case "forward":
+                    state.horizontal += command.Argument;
+                    state.depth += state.aim * command.Argument;
+                    break;
+                case "down":
+                    state.aim += command.Argument;
+                    break;
+                case "up":
+                    state.aim -= command.Argument;
+                    break;
+                default:
+                    break;
+            }
+
+            return state;
+        }
+
+        private struct Command 
+        {
+            public string Name;
+            public int Argument;
+
+        }
+
         private struct State
         {
             public int horizontal;
             public int depth;
+            public int aim;
         }
     }
 }
