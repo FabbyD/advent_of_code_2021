@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Linq;
 
 namespace AdventOfCode2021.Days
 {
@@ -10,9 +11,8 @@ namespace AdventOfCode2021.Days
         public void Part1()
         {
             var lines = File.ReadAllLines(inputPath);
-            var bitCounts = CountBits(lines);
-            int numBits = bitCounts.Length;
-            int gammaRate = ComputeGammaRate(bitCounts, lines.Length);
+            int gammaRate = ComputeGammaRate(lines);
+            int numBits = lines[0].Length;
             int epsilonRate = ComputeEpsilonRate(gammaRate, numBits);
 
             Console.WriteLine("Solution: {0}", gammaRate * epsilonRate);
@@ -20,7 +20,69 @@ namespace AdventOfCode2021.Days
 
         public void Part2()
         {
+            var lines = File.ReadAllLines(inputPath);
             
+            int oxygenRating = FindOxygenRating(lines);
+            int co2Rating = FindCO2Rating(lines);
+
+            Console.WriteLine("Solution: {0}", oxygenRating * co2Rating);
+        }
+
+        private bool IsEven(int number) => number % 2 == 0;
+
+        private int FindOxygenRating(string[] lines)
+        {
+            return FindRating(lines, 0, (lines, bitPosition) => {
+                var onesCount = CountBit(lines, bitPosition);
+
+                int half = lines.Length / 2;
+                if (IsEven(lines.Length))
+                {
+                    return onesCount >= half ? '1' : '0';
+                }
+                else
+                {
+                    return onesCount > half ? '1' : '0';
+                }
+            });
+        }
+
+        private int FindCO2Rating(string[] lines)
+        {
+            return FindRating(lines, 0, (lines, bitPosition) => {
+                var onesCount = CountBit(lines, bitPosition);
+
+                float half = lines.Length / 2;
+                if (IsEven(lines.Length))
+                {
+                    return onesCount >= half ? '0' : '1';
+                }
+                else
+                {
+                    return onesCount > half ? '0' : '1';
+                }
+            });
+        }
+
+        private int FindRating(string[] lines, int bitPosition, Func<string[], int, char> findBit)
+        {
+            if (lines.Length == 1)
+            {
+                return Convert.ToInt32(lines[0], 2);
+            }
+
+            if (bitPosition >= lines[0].Length)
+            {
+                throw new InvalidOperationException("Derp.");
+            }
+
+            char comparedBit = findBit(lines, bitPosition);
+
+            var filteredLines = lines
+                .Where(line => line[bitPosition] == comparedBit)
+                .ToArray();
+            
+            return FindRating(filteredLines, bitPosition + 1, findBit);
         }
 
         private int[] CountBits(string[] lines)
@@ -29,22 +91,38 @@ namespace AdventOfCode2021.Days
             var numBits = lines[0].Length;
             var counts = new int[numBits];
 
-            foreach (var line in lines)
+            for (int bitPosition = 0; bitPosition < numBits; bitPosition++)
             {
-                for (int i = 0; i < line.Length; i++)
-                {
-                    if (line[i] == '1')
-                    {
-                        counts[i]++;
-                    }
-                }
+                counts[bitPosition] = CountBit(lines, bitPosition);
             }
 
             return counts;
         }
 
-        private int ComputeGammaRate(int[] bitCounts, int reportSize)
+        private int CountBit(string[] lines, int bitPosition)
         {
+            int count = 0;
+            foreach (var line in lines)
+            {
+                if (line[bitPosition] == '1')
+                {
+                    count++;
+                }
+            }
+
+            return count;
+        }
+
+        private char FindMostCommonBit(string[] lines, int bitPosition)
+        {
+            var bitCount = CountBit(lines, bitPosition);
+            return bitCount >= lines.Length / 2 ? '1' : '0';
+        }
+
+        private int ComputeGammaRate(string[] lines)
+        {
+            int[] bitCounts = CountBits(lines);
+            int reportSize = lines.Length;
             int gammaRate = 0;
             for (int i = 0; i < bitCounts.Length; i++)
             {
