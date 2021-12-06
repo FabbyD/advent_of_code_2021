@@ -29,14 +29,15 @@ namespace AdventOfCode2021
 
         static IDay GetDay(int dayNumber)
         {
-            switch (dayNumber)
+            var dayType = Type.GetType($"AdventOfCode2021.Days.Day{dayNumber}");
+
+            if (dayType == null)
             {
-                case 1:
-                    return new Day1();
-                case 2:
-                    return new Day2();
-                default:
-                    throw new ArgumentException("Unknown day number", nameof(dayNumber));
+                throw new ArgumentException($"Could not find day {dayNumber}", nameof(dayNumber));
+            }
+            else
+            {
+                return (IDay)Activator.CreateInstance(dayType);
             }
         }
     }
