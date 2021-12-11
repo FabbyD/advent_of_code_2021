@@ -4,11 +4,9 @@ using System.Linq;
 
 namespace AdventOfCode2021.Days
 {
-    public class Day3 : IDay
+    public class Day3 : Day
     {
-        private const string inputPath = "inputs/day3.txt";
-
-        public void Part1()
+        public override void Part1()
         {
             var lines = File.ReadAllLines(inputPath);
             int gammaRate = ComputeGammaRate(lines);
@@ -18,7 +16,7 @@ namespace AdventOfCode2021.Days
             Console.WriteLine("Solution: {0}", gammaRate * epsilonRate);
         }
 
-        public void Part2()
+        public override void Part2()
         {
             var lines = File.ReadAllLines(inputPath);
             

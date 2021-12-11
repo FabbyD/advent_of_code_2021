@@ -27,7 +27,7 @@ namespace AdventOfCode2021
             }
         }
 
-        static IDay GetDay(int dayNumber)
+        static Day GetDay(int dayNumber)
         {
             var dayType = Type.GetType($"AdventOfCode2021.Days.Day{dayNumber}");
 
@@ -37,7 +37,7 @@ namespace AdventOfCode2021
             }
             else
             {
-                return (IDay)Activator.CreateInstance(dayType);
+                return (Day)Activator.CreateInstance(dayType);
             }
         }
     }

@@ -4,11 +4,9 @@ using System.Linq;
 
 namespace AdventOfCode2021.Days
 {
-    public class Day2 : IDay
+    public class Day2 : Day
     {
-        private const string inputPath = "inputs/day2.txt";
-
-        public void Part1()
+        public override void Part1()
         {
             var finalState = File.ReadAllLines(inputPath)
                 .Aggregate(new State(), (state, line) => Process(Parse(line), ref state));
@@ -16,7 +14,7 @@ namespace AdventOfCode2021.Days
             Console.WriteLine("Solution: {0}", finalState.depth * finalState.horizontal);
         }
 
-        public void Part2()
+        public override void Part2()
         {
             var finalState = File.ReadAllLines(inputPath)
                 .Aggregate(new State(), (state, line) => Process2(Parse(line), ref state));

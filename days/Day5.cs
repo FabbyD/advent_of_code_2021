@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace AdventOfCode2021.Days
 {
-    public class Day5 : IDay
+    public class Day5 : Day
     {
         private struct Vent
         {
@@ -169,9 +169,7 @@ namespace AdventOfCode2021.Days
 
         }
 
-        private string inputPath = "inputs/day5.txt";
-
-        public void Part1()
+        public override void Part1()
         {
             var environment = new Environment();
             foreach (var line in File.ReadLines(inputPath))
@@ -183,7 +181,7 @@ namespace AdventOfCode2021.Days
             Console.WriteLine("Solution : {0}", environment.CountDangerZones());
         }
 
-        public void Part2()
+        public override void Part2()
         {
             var environment = new Environment();
             foreach (var line in File.ReadLines(inputPath))

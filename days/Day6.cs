@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace AdventOfCode2021.Days
 {
-    public class Day6 : IDay
+    public class Day6 : Day
     {
         class School
         {
@@ -46,14 +46,12 @@ namespace AdventOfCode2021.Days
             }
         }
 
-        private readonly string inputPath = "inputs/day6.txt";
-
-        public void Part1()
+        public override void Part1()
         {
             Simulate(80);
         }
 
-        public void Part2()
+        public override void Part2()
         {
             Simulate(256);
         }

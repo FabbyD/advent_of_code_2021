@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace AdventOfCode2021.Days
 {
-    public class Day4 : IDay
+    public class Day4 : Day
     {
         private class Board
         {
@@ -185,9 +185,7 @@ namespace AdventOfCode2021.Days
             }
         }
 
-        private readonly string inputPath = "inputs/day4.txt";
-
-        public void Part1()
+        public override void Part1()
         {
             var bingo = new Bingo(inputPath);
 
@@ -203,7 +201,7 @@ namespace AdventOfCode2021.Days
             Console.WriteLine("Solution: {0}", boardScore * lastDraw);
         }
 
-        public void Part2()
+        public override void Part2()
         {
             var bingo = new Bingo(inputPath);
 

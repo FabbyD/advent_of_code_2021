@@ -4,11 +4,9 @@ using System.Linq;
 
 namespace AdventOfCode2021.Days
 {
-    public class Day1 : IDay
+    public class Day1 : Day
     {
-        private const string inputPath = "inputs/day1.txt";
-
-        public void Part1()
+        public override void Part1()
         {
             int[] measurements = ReadMeasurements();
 
@@ -28,7 +26,7 @@ namespace AdventOfCode2021.Days
             Console.WriteLine("Solution: {0}", increasedCount);
         }
 
-        public void Part2()
+        public override void Part2()
         {
             int[] measurements = ReadMeasurements();
             const int windowSize = 3;

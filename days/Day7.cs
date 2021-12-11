@@ -4,16 +4,14 @@ using System.Linq;
 
 namespace AdventOfCode2021.Days
 {
-    public class Day7 : IDay
+    public class Day7 : Day
     {
-        private readonly string inputPath = "inputs/day7.txt";
-
-        public void Part1()
+        public override void Part1()
         {
             FindBestPosition((src, dst) => Math.Abs(dst-src));
         }
 
-        public void Part2()
+        public override void Part2()
         {
             FindBestPosition((src, dst) => {
                 int n = Math.Abs(dst-src);
