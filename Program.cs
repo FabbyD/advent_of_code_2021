@@ -9,7 +9,8 @@ namespace AdventOfCode2021
         {
             if (args.Length > 1)
             {
-                var day = GetDay(int.Parse(args[0]));
+                bool useExample = args.Length > 2 && args[2] == "-t";
+                var day = GetDay(int.Parse(args[0]), useExample);
                 
                 switch (int.Parse(args[1]))
                 {
@@ -27,7 +28,7 @@ namespace AdventOfCode2021
             }
         }
 
-        static Day GetDay(int dayNumber)
+        static Day GetDay(int dayNumber, bool useExample)
         {
             var dayType = Type.GetType($"AdventOfCode2021.Days.Day{dayNumber}");
 
@@ -37,7 +38,9 @@ namespace AdventOfCode2021
             }
             else
             {
-                return (Day)Activator.CreateInstance(dayType);
+                var day = (Day)Activator.CreateInstance(dayType);
+                day.UseExample = useExample;
+                return day;
             }
         }
     }
