@@ -103,7 +103,7 @@ namespace AdventOfCode2021.Days
             public const int ZeroSixNine = 6;
         }
 
-        public override void Part1()
+        public override ulong Part1()
         {
             int count = 0;
             foreach (var line in File.ReadLines(inputPath))
@@ -124,10 +124,10 @@ namespace AdventOfCode2021.Days
                 }
             }
 
-            Console.WriteLine("Solution : {0}", count);
+            return (ulong) count;
         }
 
-        public override void Part2()
+        public override ulong Part2()
         {
             int sum = 0;
             foreach (var line in File.ReadLines(inputPath))
@@ -144,7 +144,7 @@ namespace AdventOfCode2021.Days
                 sum += decoding.Decode(output);
             }
 
-            Console.WriteLine("Solution : {0}", sum);
+            return (ulong) sum;
         }
 
         private Decoding FindDecoding(IEnumerable<Signal> signals)

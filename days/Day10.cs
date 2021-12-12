@@ -12,7 +12,7 @@ namespace AdventOfCode2021.Days
         Dictionary<char, uint> scoresPart2 = new Dictionary<char, uint>
             { { '(', 1}, { '[', 2}, { '{', 3}, { '<', 4}};
 
-        public override void Part1()
+        public override ulong Part1()
         {
             Stack<char> stack = new Stack<char>();
             int sum = 0;
@@ -70,10 +70,10 @@ namespace AdventOfCode2021.Days
                 sum += score;
             }
 
-            Console.WriteLine("Solution : {0}", sum);
+            return (ulong)sum;
         }
 
-        public override void Part2()
+        public override ulong Part2()
         {
             var stack = new Stack<char>();
             var scores = new List<ulong>();
@@ -128,7 +128,7 @@ namespace AdventOfCode2021.Days
             scores.Sort();
             int middle = scores.Count/2;
 
-            Console.WriteLine("Solution : {0}", scores[middle]);
+            return scores[middle];
         }
 
         private ulong CompleteLine(Stack<char> stack)

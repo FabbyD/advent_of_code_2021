@@ -170,7 +170,7 @@ namespace AdventOfCode2021.Days
             }
         }
 
-        public override void Part1()
+        public override ulong Part1()
         {
             var heightMap = new HeightMap();
             foreach (var line in File.ReadLines(inputPath))
@@ -178,10 +178,10 @@ namespace AdventOfCode2021.Days
                 heightMap.AddRow(line.Select(c => uint.Parse(new []{c})).ToArray());
             }
 
-            Console.WriteLine("Solution : {0}", heightMap.GetRiskLevel());
+            return (ulong) heightMap.GetRiskLevel();
         }
 
-        public override void Part2()
+        public override ulong Part2()
         {
             var heightMap = new HeightMap();
             foreach (var line in File.ReadLines(inputPath))
@@ -192,7 +192,7 @@ namespace AdventOfCode2021.Days
             var basins = heightMap.GetBasins();
             basins.Sort((a, b) => b.Size.CompareTo(a.Size));
             
-            Console.WriteLine("Solution : {0}", basins[0].Size * basins[1].Size * basins[2].Size);
+            return (ulong) (basins[0].Size * basins[1].Size * basins[2].Size);
         }
     }
 }

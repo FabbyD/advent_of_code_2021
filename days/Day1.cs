@@ -6,7 +6,7 @@ namespace AdventOfCode2021.Days
 {
     public class Day1 : Day
     {
-        public override void Part1()
+        public override ulong Part1()
         {
             int[] measurements = ReadMeasurements();
 
@@ -23,10 +23,10 @@ namespace AdventOfCode2021.Days
                     return count;
                 });
 
-            Console.WriteLine("Solution: {0}", increasedCount);
+            return (ulong)increasedCount;
         }
 
-        public override void Part2()
+        public override ulong Part2()
         {
             int[] measurements = ReadMeasurements();
             const int windowSize = 3;
@@ -44,7 +44,7 @@ namespace AdventOfCode2021.Days
                 previousSum = currentSum;
             }
 
-            Console.WriteLine("Solution: {0}", count);
+            return (ulong)count;
         }
 
         private int[] ReadMeasurements()

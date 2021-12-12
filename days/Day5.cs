@@ -169,7 +169,7 @@ namespace AdventOfCode2021.Days
 
         }
 
-        public override void Part1()
+        public override ulong Part1()
         {
             var environment = new Environment();
             foreach (var line in File.ReadLines(inputPath))
@@ -178,10 +178,10 @@ namespace AdventOfCode2021.Days
                 environment.ApplyVent(vent, false);
             }
 
-            Console.WriteLine("Solution : {0}", environment.CountDangerZones());
+            return (ulong) environment.CountDangerZones();
         }
 
-        public override void Part2()
+        public override ulong Part2()
         {
             var environment = new Environment();
             foreach (var line in File.ReadLines(inputPath))
@@ -190,7 +190,7 @@ namespace AdventOfCode2021.Days
                 environment.ApplyVent(vent, true);
             }
 
-            Console.WriteLine("Solution : {0}", environment.CountDangerZones());
+            return (ulong) environment.CountDangerZones();
         }
 
         private Vent ParseVent(string line)

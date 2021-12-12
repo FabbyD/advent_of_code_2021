@@ -185,7 +185,7 @@ namespace AdventOfCode2021.Days
             }
         }
 
-        public override void Part1()
+        public override ulong Part1()
         {
             var bingo = new Bingo(inputPath);
 
@@ -198,10 +198,10 @@ namespace AdventOfCode2021.Days
             var boardScore = winner.Score;
             var lastDraw = bingo.LastDraw;
 
-            Console.WriteLine("Solution: {0}", boardScore * lastDraw);
+            return (ulong) (boardScore * lastDraw);
         }
 
-        public override void Part2()
+        public override ulong Part2()
         {
             var bingo = new Bingo(inputPath);
 
@@ -214,7 +214,7 @@ namespace AdventOfCode2021.Days
             var boardScore = winner.Score;
             var lastDraw = bingo.LastDraw;
 
-            Console.WriteLine("Solution: {0}", boardScore * lastDraw);
+            return (ulong) (boardScore * lastDraw);
         }
     }
 }

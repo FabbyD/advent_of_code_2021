@@ -6,20 +6,20 @@ namespace AdventOfCode2021.Days
 {
     public class Day2 : Day
     {
-        public override void Part1()
+        public override ulong Part1()
         {
             var finalState = File.ReadAllLines(inputPath)
                 .Aggregate(new State(), (state, line) => Process(Parse(line), ref state));
 
-            Console.WriteLine("Solution: {0}", finalState.depth * finalState.horizontal);
+            return (ulong) (finalState.depth * finalState.horizontal);
         }
 
-        public override void Part2()
+        public override ulong Part2()
         {
             var finalState = File.ReadAllLines(inputPath)
                 .Aggregate(new State(), (state, line) => Process2(Parse(line), ref state));
 
-            Console.WriteLine("Solution: {0}", finalState.depth * finalState.horizontal);
+            return (ulong) (finalState.depth * finalState.horizontal);
         }
 
         private Command Parse(string line)

@@ -6,7 +6,7 @@ namespace AdventOfCode2021.Days
 
         protected virtual string inputPath => $"inputs/{GetType().Name.ToLower()}{(UseExample ? "_example" : string.Empty)}.txt";
 
-        public abstract void Part1();
-        public abstract void Part2();
+        public abstract ulong Part1();
+        public abstract ulong Part2();
     }
 }

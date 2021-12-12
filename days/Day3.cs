@@ -6,24 +6,24 @@ namespace AdventOfCode2021.Days
 {
     public class Day3 : Day
     {
-        public override void Part1()
+        public override ulong Part1()
         {
             var lines = File.ReadAllLines(inputPath);
             int gammaRate = ComputeGammaRate(lines);
             int numBits = lines[0].Length;
             int epsilonRate = ComputeEpsilonRate(gammaRate, numBits);
 
-            Console.WriteLine("Solution: {0}", gammaRate * epsilonRate);
+            return (ulong) (gammaRate * epsilonRate);
         }
 
-        public override void Part2()
+        public override ulong Part2()
         {
             var lines = File.ReadAllLines(inputPath);
             
             int oxygenRating = FindOxygenRating(lines);
             int co2Rating = FindCO2Rating(lines);
 
-            Console.WriteLine("Solution: {0}", oxygenRating * co2Rating);
+            return (ulong) (oxygenRating * co2Rating);
         }
 
         private bool IsEven(int number) => number % 2 == 0;

@@ -46,17 +46,17 @@ namespace AdventOfCode2021.Days
             }
         }
 
-        public override void Part1()
+        public override ulong Part1()
         {
-            Simulate(80);
+            return Simulate(80);
         }
 
-        public override void Part2()
+        public override ulong Part2()
         {
-            Simulate(256);
+            return Simulate(256);
         }
 
-        private void Simulate(int dayCount)
+        private ulong Simulate(int dayCount)
         {
             var school = new School();
             var timers = File.ReadAllLines(inputPath)[0].Split(",");
@@ -70,7 +70,7 @@ namespace AdventOfCode2021.Days
                 school.Day();
             }
 
-            Console.WriteLine("Solution : {0}", school.Count);
+            return (ulong) school.Count;
         }
     }
 }

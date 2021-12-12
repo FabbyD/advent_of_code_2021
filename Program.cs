@@ -10,17 +10,25 @@ namespace AdventOfCode2021
             if (args.Length > 1)
             {
                 bool useExample = args.Length > 2 && args[2] == "-t";
-                var day = GetDay(int.Parse(args[0]), useExample);
+                int dayNumber = int.Parse(args[0]);
+                var day = GetDay(dayNumber, useExample);
                 
-                switch (int.Parse(args[1]))
+                ulong solution;
+                int partNumber = int.Parse(args[1]);
+                switch (partNumber)
                 {
                     case 1:
-                        day.Part1();
+                        solution = day.Part1();
                         break;
                     case 2:
-                        day.Part2();
+                        solution = day.Part2();
                         break;
+                    default :
+                        throw new ArgumentOutOfRangeException(nameof(args), "There are only 2 parts to each day.");
                 }
+
+                Console.WriteLine($"Day {dayNumber} part {partNumber}");
+                Console.WriteLine($"Solution : {solution}");
             }
             else
             {

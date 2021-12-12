@@ -6,20 +6,20 @@ namespace AdventOfCode2021.Days
 {
     public class Day7 : Day
     {
-        public override void Part1()
+        public override ulong Part1()
         {
-            FindBestPosition((src, dst) => Math.Abs(dst-src));
+            return FindBestPosition((src, dst) => Math.Abs(dst-src));
         }
 
-        public override void Part2()
+        public override ulong Part2()
         {
-            FindBestPosition((src, dst) => {
+            return FindBestPosition((src, dst) => {
                 int n = Math.Abs(dst-src);
                 return n*(n+1)/2;
             });
         }
 
-        private void FindBestPosition(Func<int, int, int> costFunction)
+        private ulong FindBestPosition(Func<int, int, int> costFunction)
         {
             var crabs = File.ReadAllLines(inputPath)[0]
                 .Split(",")
@@ -40,7 +40,7 @@ namespace AdventOfCode2021.Days
                 }
             }
 
-            Console.WriteLine("Solution : {0}", lowestFuel);
+            return (ulong) lowestFuel;
         }
     }
 }
