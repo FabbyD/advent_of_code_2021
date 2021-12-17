@@ -8,6 +8,11 @@ import (
 )
 
 func main() {
+	part1()
+	part2()
+}
+
+func part1() {
 	octopuses := readOctopuses()
 	flashCount := 0
 
@@ -17,7 +22,22 @@ func main() {
 		fmt.Printf("Step %v : %v\n", i, flashCount)
 		print(octopuses)
 	}
+}
 
+func part2() {
+	octopuses := readOctopuses()
+
+	print(octopuses)
+	for i := 1; i <= 500; i++ {
+		flashCount := step(octopuses)
+		fmt.Printf("Step %v : %v\n", i, flashCount)
+		print(octopuses)
+
+		if flashCount == 100 {
+			fmt.Printf("Synchronized on step %v!\n", i)
+			break
+		}
+	}
 }
 
 func step(octopuses [][]int) int {
