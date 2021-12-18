@@ -100,7 +100,7 @@ func print(octopuses [][]int) {
 }
 
 func readOctopuses() [][]int {
-	file, err := os.Open("../inputs/day11.txt")
+	file, err := os.Open("day11.txt")
 	if err != nil {
 		log.Fatal(err)
 	}
